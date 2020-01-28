@@ -24,4 +24,31 @@ jobs:
               working-directory: .
               run: ./gradlew test
 
+    integration-test:
+        runs-on: ubuntu-latest
+        needs: build-and-test     # make sure unit testing is run first
+        steps:
+          - uses: actions/checkout@v1
+
+          # Run the server
+          - name: Run Docker Compose
+            working-directory: .
+            run: docker-compose up -d --build
+
+          # Install system dependencies
+          - name: Intall pytest and requests
+            working-directory: .
+            run: pip3 install -U requests && pip3 install -U pytest
+
+          # Run system tests using pytest
+          - name: Run system testing
+            working-directory: .
+            run: pytest
+
+          # Bring container down
+          - name: Purge containers
+            working-directory: .
+            run: docker-compose down
+
+
 
