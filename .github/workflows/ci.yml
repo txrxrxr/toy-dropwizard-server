@@ -36,12 +36,13 @@ jobs:
             run: docker-compose up -d --build
 
           # Install system dependencies
-          - name: Intall pytest and requests
-            uses: actions/setup-python@v1
+          - uses: actions/setup-python@v1
             with:
               python-version: '3.7'
+
+          - name: Intall pytest and requests
             working-directory: .
-            run: pip3 install -U requests && pip3 install -U pytest
+          - run: pip3 install -U requests && pip3 install -U pytest
 
           # Run system tests using pytest
           - name: Run system testing
