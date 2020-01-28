@@ -37,6 +37,7 @@ jobs:
 
           # Install system dependencies
           - name: Intall pytest and requests
+            uses: actions/setup-python@v1
             working-directory: .
             run: pip3 install -U requests && pip3 install -U pytest
 
