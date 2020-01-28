@@ -40,9 +40,7 @@ jobs:
             with:
               python-version: '3.7'
 
-          - name: Intall pytest and requests
-            working-directory: .
-          - run: pip3 install -U requests && pip3 install -U pytest
+          - run: pip3 install requests && pip3 install -U pytest
 
           # Run system tests using pytest
           - name: Run system testing
